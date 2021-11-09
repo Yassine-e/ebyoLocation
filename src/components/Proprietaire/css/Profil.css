@@ -36,3 +36,10 @@
 	cursor: pointer; /* "hand" cursor */
     color: white;
 }
+.deleteImg{
+  color: white;
+  position: relative;
+  float: right;
+  top: 28px;
+  right: 6px;
+}

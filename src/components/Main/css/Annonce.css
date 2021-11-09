@@ -1,9 +1,5 @@
-.myannonces {
-  width: 1180px;
-  height: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
+.forannonce {
+  height: max-content;
 }
 .forpic {
   width: 389px;
@@ -12,7 +8,9 @@
 .wholeAnnonce {
   width: 389px;
   height: 620px;
+  margin: 20px;
   border: 1px dotted #e0e1e5 !important;
+  /*float: left;*/
 }
 .fordescription {
   padding: 20px;

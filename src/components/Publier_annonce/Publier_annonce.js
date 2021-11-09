@@ -72,7 +72,10 @@ function Publier_annonce() {
           <StyledStepLabel disabled>third</StyledStepLabel>
         </Step>
       </Stepper>
-      <div className="step1" style={{ display: ActiveStep == 0 ? "" : "none" }}>
+      <div
+        className="step1"
+        style={{ display: ActiveStep === 0 ? "" : "none" }}
+      >
         <div className="phase1">
           <form>
             <h5>Type de bien</h5>
@@ -81,17 +84,12 @@ function Publier_annonce() {
             <br /> <br />
             <div className="typebien">
                {" "}
-              <input type="radio" id="html" name="fav_language" value="HTML" /> {" "}
-              <label for="html">Appartement</label>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+                <label for="html">Appartement</label>
               <br />
-                <input
-                type="radio"
-                id="css"
-                name="fav_language"
-                value="CSS"
-              />  <label for="css">Maison</label>
-              <br />
-               {" "}
+                <input type="radio" id="css" name="fav_language" value="CSS" />
+                <label for="css">Maison</label>
+              <br /> {" "}
               <input
                 type="radio"
                 id="javascript"
@@ -145,7 +143,10 @@ function Publier_annonce() {
         </div>{" "}
         <br /> <br />
       </div>
-      <div className="step2" style={{ display: ActiveStep == 1 ? "" : "none" }}>
+      <div
+        className="step2"
+        style={{ display: ActiveStep === 1 ? "" : "none" }}
+      >
         <div className="form-group">
             <label for="html">Surface:</label>
           <input type="number" name="FirstName" placeholder="En m²" />
@@ -156,7 +157,10 @@ function Publier_annonce() {
           <input type="number" name="FirstName" placeholder="En MAD" />
         </div>
       </div>
-      <div className="step3" style={{ display: ActiveStep == 2 ? "" : "none" }}>
+      <div
+        className="step3"
+        style={{ display: ActiveStep === 2 ? "" : "none" }}
+      >
         <div className="myflexa">
           <h5>Upload photos</h5>
           <hr className="reactta" />
@@ -215,13 +219,13 @@ function Publier_annonce() {
         variant="outlined"
         className="interval"
         color="primary"
-        style={{ display: ActiveStep == 0 ? "none" : "" }}
+        style={{ display: ActiveStep === 0 ? "none" : "" }}
         onClick={() => previousStep()}
       >
         Previous Step
       </Button>
       <Button variant="outlined" color="primary" onClick={() => nextStep()}>
-        {ActiveStep == 2 ? "Finish" : " Next Step"}
+        {ActiveStep === 2 ? "Finish" : " Next Step"}
       </Button>
       <br /> <br />
     </div>

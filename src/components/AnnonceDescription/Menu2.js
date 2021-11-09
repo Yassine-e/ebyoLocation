@@ -1,29 +1,21 @@
 import React from "react";
 import mylogo from "./img/logo2.png";
 import "./css/Menu2.css";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Container,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Form } from "react-bootstrap";
 function Menu2() {
   return (
     <div>
       <Navbar className="color-nav" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="#" className="firstdevis">
             <a className="" href="/">
-              <img className="mylog" src={mylogo} width="63px" alt="" />
+              <img className="mylog " src={mylogo} width="63px" alt="" />
             </a>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
-              className="me-auto my-2 my-lg-0"
+              className="me-auto my-2 my-lg-0 seconddevis"
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
@@ -42,7 +34,7 @@ function Menu2() {
               </Nav.Link>
             </Nav>
             <Form className="d-flex">
-              <Nav.Link className="pil  " href="/">
+              <Nav.Link className="pil  pilaouch" href="/">
                 <div className="mycadr">Se connecter</div>
               </Nav.Link>
               <Nav.Link className="pil mycadr" href="/">

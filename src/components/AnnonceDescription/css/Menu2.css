@@ -1,9 +1,7 @@
 * {
   text-decoration: none !important;
 }
-.possaa {
-  background-color: #05668d !important;
-}
+
 .color-nav {
   background-color: #05668d;
 }
@@ -14,24 +12,7 @@
   background-color: rgba(25, 25, 26, 0);
   /*border-bottom: outset 1px rgb(0, 0, 0);*/
 }
-.myMenu {
-  margin-top: 40px;
-  margin-left: 20px;
-  margin-left: 20px;
-}
-#navbarNav {
-  float: right;
-  margin-right: 200px;
-}
-.myMenu button {
-  background-color: transparent !important;
-  border: none;
-}
-ul li {
-  float: left;
-  margin-right: 30px;
-  list-style: none;
-}
+
 a {
   color: rgb(0, 0, 0);
 }
@@ -43,18 +24,11 @@ a {
 .pila:hover {
   color: #679436 !important;
 }
-.mycadr {
-  padding-top: 10%;
-}
+
 .mylog {
   margin-top: -20px;
 }
-.pil_push {
-  margin-right: 190px;
-}
-.Speciall {
-  margin-left: 45px;
-}
+
 .moncadra {
   color: #ffffff;
   border: solid white 2px;
@@ -76,4 +50,13 @@ a {
 }
 .contentCadr:hover {
   color: #ffffff;
+}
+.firstdevis {
+  width: 30%;
+}
+.seconddevis {
+  width: 50%;
+}
+.pilaouch {
+  padding-top: 20px;
 }
