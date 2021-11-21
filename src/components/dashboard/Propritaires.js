@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import Axios from 'axios'
 import NavVertical from "./navVertical";
 import Button from "@material-ui/core/Button";
 import NavBar from "./navBar";
 import ReactPaginate from "react-paginate";
 import Avatar from "@mui/material/Avatar";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
-import ElderlyIcon from "@mui/icons-material/Elderly";
+import PhoneIcon from '@mui/icons-material/Phone';
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import "./css/Propritaires.css";
 function Propritaires() {
+  let user=JSON.parse(localStorage.getItem('user-info'))
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 3;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const [Cards /*SetCards*/] = useState([
+  const [Users,SetUsers] = useState([
     {
       Prenom: "Yassine",
       Nom: "Achari",
@@ -26,168 +28,71 @@ function Propritaires() {
       img:
         "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
       key: "1",
-    },
-    {
-      Prenom: "Tarik",
-      Nom: "Eloud",
-      age: "23",
-      email: "Totok@gmail.com",
-      numTel: "061296632",
-      Password: "Tariko562",
-      adresse: "Rabat",
-      annonce: "4",
-      img:
-        "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-      key: "2",
-    },
-    {
-      Prenom: "Oussama",
-      Nom: "El Merroun",
-      age: "23",
-      email: "ousmar@gmail.com",
-      numTel: "066893632",
-      Password: "Ousmar",
-      adresse: "Tétouan",
-      annonce: "10",
-      img:
-        "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-      key: "3",
-    },
-    {
-      Prenom: "Amine",
-      Nom: "El Alaoui",
-      age: "22",
-      email: "AmineElala@gmail.com",
-      numTel: "0634135569",
-      Password: "Aminnne",
-      adresse: "Tétouan",
-      annonce: "16",
-      img:
-        "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-      key: "4",
-    },
-    {
-      Prenom: "Mohamed",
-      Nom: "Benchlikha",
-      age: "25",
-      email: "MedBen@gmail.com",
-      numTel: "0634135569",
-      Password: "Medban",
-      adresse: "Ouazzan",
-      annonce: "15",
-      img:
-        "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-      key: "4",
-    },
-    {
-      Prenom: "Asmae",
-      Nom: "Saaidda",
-      age: "22",
-      email: "ssmma@gmail.com",
-      numTel: "0662735569",
-      Password: "Asmff552",
-      adresse: "Casablanca",
-      annonce: "7",
-      img:
-        "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-      key: "5",
-    },
+    }
   ]);
-  const pageCount = Math.ceil(Cards.length / usersPerPage);
+  const pageCount = Math.ceil(Users.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
+  // const tryRequire = (path) => {
+  //   console.log(path);
+  //   if("../img/annoncePhotos/default.png"===path)console.log("matched");
+  //   try {
+  //    return require(path).default;
+  //   }catch (err) {
+  //    return null;
+  //   }
+  // };
+
+  function DeleteUser(id){
+    Axios.delete('http://127.0.0.1:8040/proprietaire/a/admin/id/'+id)
+     .then(response => {
+        console.log(response.data);
+        if(response.data===1)alert("Successfully Deleted !!")
+        else alert("Error !!")
+        window.location.reload();
+     })
+     .catch(err=>{
+       console.log(err,err.response);
+     });
+  }
   {
     /* const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };*/
   }
-  const displayUsers = Cards.slice(
+  const displayUsers = Users.slice(
     pagesVisited,
     pagesVisited + usersPerPage
   ).map((val, indexa, i = 0) => {
     return (
       <div className="" key={indexa} style={{ display: "flex", padding: "2%" }}>
         <div className="">
-          <img
-            style={{
-              borderBottomLeftRadius: "5px",
-              borderTopLeftRadius: "5px",
-            }}
-            src={val.img}
-            alt="house"
-            height="150px"
-            width="150px"
-          />
+          <img src={val.pathPhoto!==null && val.pathPhoto!==undefined?require("../img/profileImg/"+val.pathPhoto).default:require("../img/annoncePhotos/default.png").default} alt="" width="150px" height="100%" />
+        {  /*
+          <img style={{ borderBottomLeftRadius: "5px", borderTopLeftRadius: "5px", }} src={val.img} alt="house" height="150px" width="150px" />
+          */}
         </div>
-        <div
-          style={{
-            backgroundColor: "white",
-            width: "100%",
-            height: "max-content",
-            border: "2px dotted #e0e1e5 ",
-            borderLeft: "none",
-            borderBottomRightRadius: "10px",
-            borderTopRightRadius: "10px",
-            padding: "12px",
-            paddingTop: "2px",
-            paddingBottom: "5px",
-          }}
-        >
-          <h2
-            style={{
-              textAlign: "left",
-              fontSize: "1.375rem",
-              fontFamily: "Lato",
-              fontWeight: "600",
-              color: "rgb(53, 53, 53)",
-            }}
-          >
-            <b>
-              {val.Prenom}
-              {val.Nom}
-            </b>
+        <div style={{ backgroundColor: "white", width: "100%", height: "max-content", border: "2px dotted #e0e1e5 ", borderLeft: "none", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", padding: "12px", paddingTop: "2px", paddingBottom: "5px", }} >
+          <h2 style={{ textAlign: "left", fontSize: "1.375rem", fontFamily: "Lato", fontWeight: "600", color: "rgb(53, 53, 53)", }} >
+            <b> {val.lastName} {val.firstName} </b>
           </h2>
-
           <div style={{ display: "flex", float: "right" }}>
             <div style={{ display: "flex", marginRight: "5%", width: "200px" }}>
-              <Avatar
-                sx={{
-                  width: 24,
-                  height: 24,
-                  bgcolor: "#05668d",
-                  marginRight: 1,
-                }}
-                variant="rounded"
-              >
+              <Avatar sx={{ width: 24, height: 24, bgcolor: "#05668d", marginRight: 1, }} variant="rounded" >
                 <AlternateEmailIcon />
               </Avatar>
               {val.email}
             </div>
             <div style={{ display: "flex", marginRight: "5%", width: "120px" }}>
-              <Avatar
-                sx={{
-                  width: 24,
-                  height: 24,
-                  bgcolor: "#05668d",
-                  marginRight: 1,
-                }}
-                variant="rounded"
-              >
-                <ElderlyIcon />
+              <Avatar sx={{ width: 24, height: 24, bgcolor: "#05668d", marginRight: 1, }} variant="rounded" >
+                <PhoneIcon />
               </Avatar>
-              {val.age} ans
+              {val.numTel}
             </div>
             <div style={{ display: "flex", width: "170px" }}>
-              <Avatar
-                sx={{
-                  width: 24,
-                  height: 24,
-                  bgcolor: "#05668d",
-                  marginRight: 1,
-                }}
-                variant="rounded"
-              >
+              <Avatar sx={{ width: 24, height: 24, bgcolor: "#05668d", marginRight: 1, }} variant="rounded" >
                 <PostAddIcon />
               </Avatar>
               {val.annonce} Annonces
@@ -199,39 +104,26 @@ function Propritaires() {
             </panel>
           </div>
           <div>
-            <div
-              style={{
-                textAlign: "start",
-                color: "#666",
-                marginTop: "4px",
-              }}
-            >
+            <div style={{ textAlign: "start", color: "#666", marginTop: "4px", }} >
               <strong>
-                Id : <b>3445342</b>{" "}
-              </strong>{" "}
-              <br />
-              <strong>
-                Password : <b>{val.Password}</b>{" "}
+                Id : <b>{val.id}</b>{" "}
               </strong>{" "}
             </div>
-
-            <Button
-              variant="contained"
-              size="small"
-              style={{
-                borderRadius: "10px",
-                backgroundColor: "red",
-                color: "white",
-                float: "right",
-              }}
-            >
-              Delete
-            </Button>
+            <Button onClick={()=>DeleteUser(val.id)} variant="contained" size="small" style={{ borderRadius: "10px", backgroundColor: "red", color: "white", float: "right", }} > Delete </Button>
           </div>
         </div>
       </div>
     );
   });
+
+  useEffect(()=>{
+      Axios.get("http://127.0.0.1:8040/proprietaire/a/all")
+        .then((reponse)=> {
+          console.log(reponse.data);
+          SetUsers(reponse.data);
+        })
+  },[])
+
   return (
     <div className="App" style={{ display: "flex" }}>
       <NavVertical />

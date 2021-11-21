@@ -8,7 +8,7 @@ function AnnoncePrincipal() {
           <div className="tocity">Casablanca</div>
           <br />
           <br />
-          <h1 class="entry-title">Villa Bastilicata Grande</h1>
+          <h1 className="entry-title">Villa Bastilicata Grande</h1>
         </div>
       </div>
     </div>

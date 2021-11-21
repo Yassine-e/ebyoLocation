@@ -9,8 +9,11 @@ import DnsIcon from "@material-ui/icons/Dns";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 // import '../../assets/css/navVertical.css'
 import Logo from "../img/logo.png";
+import {useHistory} from 'react-router-dom'
+
 
 function NavVertical() {
+  const history=useHistory();
   const [Cards /*SetCards*/] = useState([
     {
       title: "Tableau de bord",
@@ -36,27 +39,14 @@ function NavVertical() {
       image: <DnsIcon />,
       key: "4",
     },
-    {
-      title: "Se deconnecter",
-      href: "/",
-      image: <DnsIcon />,
-      key: "5",
-    },
-
-    // { title:'Soins de corps ',href:'/servicePrincipale/tableauDeBord',image:<MenuIcon/>,key:'4' },
-    // { title:'Soins de visage',href:'/servicePrincipale/tableauDeBord',image:<AnnouncementIcon/>,key:'5' },
-    // { title:'Tableau de bord',href:'/servicePrincipale/tableauDeBord',image:<ContactlessIcon/>,key:'6' },
-    // { title:'Profil',href:'/servicePrincipale/tableauDeBord',image:<ListAltIcon/>,key:'7' },
-    // { title:'Epilation',href:'/servicePrincipale/tableauDeBord',image:<ShoppingBasketIcon/>,key:'8' },
-    // { title:'Soins de visage',href:'/servicePrincipale/tableauDeBord',image:<LanguageIcon/>,key:'9' },
   ]);
-
-  {
-    /* const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(!open);
-  };*/
+  function LogOut(){
+    console.log("hey");
+    const hh={"id": "", "lastName": "", "firstName": "", "email": "", "numTel": "", "password": "", "adresse": "", "pathPhoto": "","roleList": [""]}
+    localStorage.setItem("user-info",JSON.stringify(hh));
+    history.push("/");
   }
+
 
   return (
     <Fragment>
@@ -81,12 +71,7 @@ function NavVertical() {
                   </div>
                 </ListGroup.Item>
                 {Cards.map((item) => (
-                  <ListGroup.Item
-                    key={item.key}
-                    style={{ backgroundColor: "#05668D", color: "#EBF2FA" }}
-                    action
-                    href={item.href}
-                  >
+                  <ListGroup.Item key={item.key} style={{ backgroundColor: "#05668D", color: "#EBF2FA" }} action href={item.href} >
                     <div className="flex">
                       <div>{item.image}</div>
                       <div>
@@ -95,6 +80,14 @@ function NavVertical() {
                     </div>
                   </ListGroup.Item>
                 ))}
+                <ListGroup.Item key="9" style={{ backgroundColor: "#05668D", color: "#EBF2FA" }} action onClick={LogOut} >
+                  <div className="flex">
+                    <div><DnsIcon /></div>
+                    <div>
+                      <b>Se Déconnecter</b>
+                    </div>
+                  </div>
+                </ListGroup.Item>
               </ListGroup>
             </Col>
           </Row>

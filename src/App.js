@@ -12,16 +12,30 @@ import Inscription from "./components/Inscription/Inscription";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
+  let user=JSON.parse(localStorage.getItem('user-info'))
+  const id=user.id;
   return (
     <div className="App">
       <BrowserRouter>
         <Switch>
           <Route path="/" component={Initial} exact />
-          <Route path="/Dashboard" component={Dashboard} />
-          <Route path="/propritaires" component={Propritaires} />
-          <Route path="/Annonce_Attente" component={Annonce_Attente} />
-          <Route path="/Annonce_Publie" component={Annonce_pub} />
-          <Route path="/Profil" component={Profil} />
+
+          {user.roles=="ADMIN"? <Route path="/Dashboard" component={Dashboard} /> : <Route path="/Dashboard" component={ErrorPage} /> }
+          {user.roles=="ADMIN"? <Route path="/propritaires" component={Propritaires} /> : <Route path="/propritaires" component={ErrorPage} /> }
+          {user.roles=="ADMIN"? <Route path="/Annonce_Publie" component={Annonce_pub} /> : <Route path="/Annonce_Publie" component={ErrorPage} /> }
+          {user.roles=="ADMIN"? <Route path="/Annonce_Attente" component={Annonce_Attente} /> : <Route path="/Annonce_Attente" component={ErrorPage} /> }
+          {user.roles=="PROPRIETAIRE"? <Route path="/Profil" component={Profil} /> : <Route path="/Profil" component={ErrorPage} /> }
+
+
+          {/*
+            <Route path="/propritaires" component={Propritaires} />
+            <Route path="/Annonce_Attente" component={Annonce_Attente} />
+            <Route path="/Annonce_Publie" component={Annonce_pub} />
+            <Route path="/Profil" component={Profil} />
+
+          */}
+
+
           <Route path="/Description" component={Description} />
           <Route path="/Inscription" component={Inscription} />
           <Route path="/PublierAnnonce" component={PublierAnnonce} />

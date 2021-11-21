@@ -34,14 +34,14 @@ function Menu2() {
               </Nav.Link>
             </Nav>
             <Form className="d-flex">
-              <Nav.Link className="pil  pilaouch" href="/">
+              {/*<Nav.Link className="pil  pilaouch" href="/">
                 <div className="mycadr">Se connecter</div>
               </Nav.Link>
               <Nav.Link className="pil mycadr" href="/">
                 <div className="moncadra">
                   <p className="">Publier annonce</p>
                 </div>
-              </Nav.Link>
+              </Nav.Link>*/}
             </Form>
           </Navbar.Collapse>
         </Container>
